@@ -1,0 +1,644 @@
+
+<div id="addQuestion">
+  <button class="btn btn-success ctsbutton container col-md-6 text-center bgcolor1" (click)="toggleShowBw6()" type="checkbox" >BW6 Configuration</button>
+</div>
+<br><br>
+
+<div *ngIf="showBw6" class="row container-fluid"  id="divbw6show">
+  
+  <div class="container col-md-12">
+    <form class="rounded">
+      <div class="row">
+        <div class="col-sm-12" style="background-color:rgb(221, 210, 190);">
+          <h4>BW6 Application Configuration </h4>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <form class="form-inline" #postBw6Form="ngForm" (ngSubmit)="onCreateBw6Post(postBw6Form.value)" >
+    <div class="rgform container col-md-12">
+
+      <div class="col-md-6">
+    
+        <div class="row">
+            <div class="col-md-3">
+              <label for="GIT_URL">GIT_URL</label>
+            </div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="GIT_URL"
+                required
+                ngModel
+                name="GIT_URL" 
+                placeholder="GIT_URL"
+              />
+            </div>
+        </div>
+          <br>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label for="PROJECT_NAME">PROJECT_NAME</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="PROJECT_NAME"
+              required
+              [(ngModel)]="myInput"
+              name="PROJECT_NAME" 
+              placeholder="PROJECT_NAME"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="Domain_DEV">Domain_DEV</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="Domain_DEV"
+              required
+              ngModel
+              name="Domain_DEV"
+              placeholder="Domain_DEV"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="AppSpace_DEV">AppSpace_DEV</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="AppSpace_DEV"
+              required
+              ngModel
+              name="AppSpace_DEV" 
+              placeholder="AppSpace_DEV"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="Domain_SIT">Domain_SIT</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="Domain_SIT"
+              required
+              ngModel
+              name="Domain_SIT"
+              placeholder="Domain_SIT"
+            />
+          </div>
+        </div>
+        <br>
+      
+      </div>
+    
+      <div class="col-md-6">
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="AppSpace_SIT">AppSpace_SIT</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="AppSpace_SIT"
+              required
+              ngModel
+              name="AppSpace_SIT"
+              placeholder="AppSpace_SIT"
+            />
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="Domain_UAT">Domain_UAT</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="Domain_UAT"
+              required
+              ngModel
+              name="Domain_UAT"
+              placeholder="Domain_UAT"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="AppSpace_UAT">AppSpace_UAT</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="AppSpace_UAT"
+              required
+              ngModel
+              name="AppSpace_UAT"
+              placeholder="AppSpace_UAT"
+            />
+          </div>
+        </div>
+        <br>
+      
+        <div class="row">
+          <div class="col-md-3">
+            <label for="Domain_PROD">Domain_PROD</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="Domain_PROD"
+              required
+              ngModel
+              name="Domain_PROD"
+              placeholder="Domain_PROD"
+            />
+          </div>
+        </div>
+        <br>
+      
+          <div class="row">
+            <div class="col-md-3">
+              <label for="AppSpace_PROD">AppSpace_PROD</label>
+            </div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="AppSpace_PROD"
+                required
+                ngModel
+                name="AppSpace_PROD"
+                placeholder="AppSpace_PROD"
+              />
+            </div>
+          </div>
+      </div>
+    </div>
+  
+  <br><br>
+
+      <div class="col-md-4" style="padding: 15px; background-color: rgb(234, 226, 241);">
+        <button class="btn btn-success" type="submit" (click) = "clickBwRefresh()"> SUBMIT  
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </div>
+
+      <div *ngIf="bwrefresh" class="col-md-4" style="padding: 15px; background-color: rgb(238, 181, 190);">
+        Refresh to Check the Status:
+        <button type="button" class="btn btn-success btn-sm" (click) = "onFetchconfigStatus()">
+          <span class="glyphicon glyphicon-refresh" ></span> Refresh
+        </button>
+        <p>
+          <strong> {{configvalues.deploymentStatus}} </strong>
+        </p>  
+      </div>
+
+  </form>     
+</div>
+<hr>
+<br>
+
+
+      <!--
+      &nbsp;&nbsp;
+      <button
+            class="btn btn-primary"
+            type="submit"
+            (click) = "clickAlert()"
+            [disabled]="!postForm.valid"
+          >
+            Submit  
+            <span class="glyphicon glyphicon-chevron-right"></span>  
+          </button>
+        -->
+
+  <div id="addQuestion">       
+    <button class="container col-md-6 btn btn-success ctsbutton bgcolor1" (click)="toggleShowBwce()" >BWCE Configuration</button>
+  </div>
+    <br><br>
+
+  <div *ngIf="tableShown" class="row container-fluid"  id="divshowbwce">
+      
+      <div class="container col-md-12">
+        <form class="rounded">
+          <div class="row">
+            <div class="col-sm-12" style="background-color:rgb(221, 210, 190);">
+              <h4>BWCE Application Config </h4>
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+  <form class="form-inline" #postBwceForm="ngForm" (ngSubmit)="onCreateBwcePost(postBwceForm.value)" >
+    <div class="rgform container col-md-12">
+        
+      <div class="col-md-6">
+          
+        <div class="row">
+          <div class="col-md-3">
+            <label for="GIT_URL">GIT_URL</label>
+          </div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="GIT_URL"
+                required
+                ngModel
+                name="GIT_URL" 
+                placeholder="GIT_URL"
+              />
+            </div>
+        </div>
+            <br>
+              
+        <div class="row">
+          <div class="col-md-3">
+            <label for="PROJECT_NAME">PROJECT_NAME</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="PROJECT_NAME"
+              required
+              [(ngModel)]="myInput"
+              name="PROJECT_NAME" 
+              placeholder="PROJECT_NAME"
+            />
+          </div>
+        </div>
+        <br>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label for="INSTANCE_NAME">INSTANCE_NAME</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="INSTANCE_NAME"
+              required
+              ngModel
+              name="INSTANCE_NAME"
+              placeholder="INSTANCE_NAME"
+            />
+          </div>
+        </div>
+        <br>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label for="PROJECT_ID">PROJECT_ID</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="PROJECT_ID"
+              required
+              ngModel
+              name="PROJECT_ID" 
+              placeholder="PROJECT_ID"
+            />
+          </div>
+        </div>
+        <br>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label for="COST_CENTER">COST_CENTER</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="COST_CENTER"
+              required
+              ngModel
+              name="COST_CENTER"
+              placeholder="COST_CENTER"
+            />
+          </div>
+        </div>
+        <br>
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label for="MEM_REQUEST">MEM_REQUEST</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="MEM_REQUEST"
+              required
+              ngModel
+              name="MEM_REQUEST"
+              placeholder="MEM_REQUEST"
+            />
+          </div>
+        </div>
+      </div>
+          
+      <div class="col-md-6">
+        
+        <div class="row">
+          <div class="col-md-3">
+            <label for="CPU_REQUEST">CPU_REQUEST</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="CPU_REQUEST"
+              required
+              ngModel
+              name="CPU_REQUEST"
+              placeholder="CPU_REQUEST"
+            />
+          </div>
+        </div>
+        <br>
+          
+        <div class="row">
+          <div class="col-md-3">
+            <label for="MEM_LIMIT">MEM_LIMIT</label>
+          </div>
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="MEM_LIMIT"
+              required
+              ngModel
+              name="MEM_LIMIT"
+              placeholder="MEM_LIMIT"
+            />
+          </div>
+        </div>
+        <br>
+              
+        <div class="row">
+            <div class="col-md-3">
+              <label for="CPU_LIMIT">CPU_LIMIT</label>
+            </div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="CPU_LIMIT"
+                required
+                ngModel
+                name="CPU_LIMIT"
+                placeholder="CPU_LIMIT"
+              />
+            </div>
+          </div>
+          <br>
+              
+        <div class="row">
+            <div class="col-md-3">
+              <label for="HEALTHCHECK_URI">HEALTHCHECK_URI</label>
+            </div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="HEALTHCHECK_URI"
+                required
+                ngModel
+                name="HEALTHCHECK_URI"
+                placeholder="HEALTHCHECK_URI"
+              />
+            </div>
+          </div>
+          <br>
+              
+        <div class="row">
+            <div class="col-md-3">
+              <label for="TECH_OWNER">TECH_OWNER</label>
+            </div>
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="TECH_OWNER"
+                required
+                ngModel
+                name="TECH_OWNER"
+                placeholder="TECH_OWNER"
+              />
+            </div>
+          </div>
+      </div>
+    </div>  
+  
+    <br>
+    <br>
+      
+    <div class="col-md-4" style="padding: 15px; background-color: rgb(234, 226, 241);">
+      <button class="btn btn-success" type="submit" (click) = "clickBwceRefresh()"> SUBMIT 
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </button>
+    </div>  
+
+    <div *ngIf="bwcerefresh" class="col-md-4" style="padding: 15px; background-color: rgb(238, 181, 190);">
+      Refresh to Check the Status:
+      <button type="button" class="btn btn-success btn-sm" (click) = "onFetchconfigStatus()">
+        <span class="glyphicon glyphicon-refresh" ></span> Refresh
+      </button>
+      <p>
+        <strong> {{configvalues.deploymentStatus}} </strong>
+      </p>  
+    </div>
+
+  </form>
+</div> 
+<hr>
+<!--
+  &nbsp;&nbsp; 
+  <button
+        class="btn btn-primary"
+        type="submit"
+        (click) = "clickAlert()"
+        [disabled]="!postForm.valid"
+      >
+        Submit  
+        <span class="glyphicon glyphicon-chevron-right"></span>  
+      </button>
+-->
+<hr style="width:80%; height:2px; border-width:2px; background-color:rgb(0, 0, 0)">
+
+<div class = "addBuildQuestion">
+  <button class="btn btn-primary ctsbutton container col-md-6 bgcolor5" (click)="toggleShowBuild()"> Build Application </button>
+</div>
+<br><br>
+
+<div *ngIf="isShown" class="row container-fluid"  id="divbuildshow">
+
+  <div class="container-fluid col-md-12">
+    <form class="rounded">
+      <div class="row">
+        <div class="container-fluid col-sm-12" style="background-color:rgb(241, 181, 141);">
+          <h4>Buid Application</h4>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <br><br>
+
+  <form class="form-inline" #postBuildForm="ngForm" (ngSubmit)="onBuildBwPost(postBuildForm.value)" >
+    <div class="rgformbuild container-fluid col-md-12">
+
+      <div class="col-md-12">
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="PROJECT_NAME">PROJECT_NAME:</label>
+          </div>
+          <div class="fluid-container">
+            <select class="form-control" id="ProId" (change)="selectChangeHandler($event)" style="width: 415px">
+              <option value="" [selected]="isSelected"> Select PROJECT_NAME</option>
+              <option *ngFor="let value of nameValue" [value]= "value.interfaceName" > {{value.interfaceName}} </option>
+            </select>
+          </div>
+          <!--
+            <div class="col-md-3">
+              <input
+                type="text"
+                class="form-control"
+                id="PROJECT_NAME"
+                required
+                [(ngModel)]="myInput"
+                name="PROJECT_NAME"
+                placeholder="PROJECT_NAME"
+              />
+            </div>
+          -->
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="GIT_URL">GIT_URL:</label>
+          </div>
+          
+          <div class="fluid-container">
+            <select class="form-control" id="ProId" (change)="selectChangeHandler($event)" style="width: 415px">
+              <option value="" [selected]="isSelected"> Select GIT_URL</option>
+              <option *ngFor="let value of nameValue" [value]= "value.interfaceName" > https://github.com/IPMTIB/{{value.interfaceName}} </option>
+            </select>
+          </div>
+          
+          <!--
+          <div class="col-md-3">
+            <input
+              type="text"
+              class="form-control"
+              id="GIT_URL"
+              required
+              ngModel
+              name="GIT_URL" 
+              placeholder="GIT_URL"
+            />
+          </div>
+        -->
+      </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="INSTANCE_NAME">INSTANCE_NAME:</label>
+          </div>
+          <div class="fluid-container">
+            <input
+              type="text"
+              class="form-control"
+              id="INSTANCE_NAME"
+              required
+              ngModel
+              size="50"
+              name="INSTANCE_NAME"
+              placeholder="INSTANCE_NAME"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="col-md-2">
+            <label for="DEPLOYMENT_TYPE">DEPLOYMENT_TYPE:</label>
+          </div>
+          <div class="fluid-container">
+            <input
+              type="text"
+              class="form-control"
+              id="DEPLOYMENT_TYPE"
+              required
+              ngModel
+              size="50"
+              name="DEPLOYMENT_TYPE" 
+              placeholder="DEPLOYMENT_TYPE"
+            />
+          </div>
+        </div>
+        <br><br>
+      </div>
+    </div>
+
+    <div class="col-md-4" style="padding: 15px; background-color: rgb(234, 226, 241);">
+      <button class="btn btn-primary" type="submit" (click) = "clickBuildRefresh()"> SUBMIT 
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </button>
+    </div>
+      
+      <div *ngIf="buildrefresh" class="col-md-4" style="padding: 15px; background-color: rgb(238, 181, 190);">
+        Click to Check the Status:
+        <button type="button" class="btn btn-warning btn-sm" (click) = "onFetchStatus()">
+          <span class="glyphicon glyphicon-refresh" ></span> STATUS
+        </button>
+        <p>
+          <strong *ngIf="!inProgress"> {{values.deploymentStatus}} </strong>
+          <strong *ngIf="inProgress"> Build In Progress... </strong>
+        </p>  
+      </div>
+
+  </form>
+</div>
+<br>

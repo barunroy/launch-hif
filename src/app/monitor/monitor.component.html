@@ -1,0 +1,64 @@
+<div class="fluid-container">
+  <table class="table table-hover table-bordered" style="font: outline;">
+    <thead>
+      <tr class="success">
+        <th>ID</th>
+        <th>Interface Name</th>
+        <th>Deployment Mode</th>
+        <th>Deployment Status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let value of values">
+        <td>{{ value.projectId || 'NA' }}</td>
+        <td>{{ value.interfaceName || 'NA' }}</td>
+        <td>{{ value.deploymentMode || 'NA' }}</td>
+        <td>{{ value.deploymentStatus || 'NA' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="btn btn-info" (click) = "onClickShow()">Click here to see all details</button>
+<br><br>
+
+<div class="table-responsive" *ngIf = "isShow">
+  <table class="table table-hover table-bordered" style="font: outline;">
+    <thead>
+      <tr class="success">
+        <th>Project ID</th> 
+        <th>Interface Name</th>
+        <th>Deployment Mode</th>
+        <th>Build Number</th>
+        <th>Instance Name</th>
+        <th>Cost Center</th>
+        <th>Memory Request</th>
+        <th>CPU Request</th>
+        <th>Memory Limit</th>
+        <th>CPU Limit</th>
+        <th>Health CheckUri</th>
+        <th>TechOwner</th>
+        <th>Deployment Status</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr *ngFor="let value of values">
+        <td>{{ value.projectId || 'NA' }}</td>
+        <td>{{ value.interfaceName || 'NA' }}</td>
+        <td>{{ value.deploymentMode || 'NA' }}</td>
+        <td>{{ value.buildNumber || 'NA' }}</td>
+        <td>{{ value.instanceName || 'NA' }}</td>
+        <td>{{ value.costCenter || 'NA' }}</td>
+        <td>{{ value.memoryRequest || 'NA' }}</td>
+        <td>{{ value.cpuRequest || 'NA' }}</td>
+        <td>{{ value.memoryLimit || 'NA' }}</td>
+        <td>{{ value.cpuLimit || 'NA' }}</td>
+        <td>{{ value.healthCheckUri || 'NA' }}</td>
+        <td>{{ value.techOwner || 'NA' }}</td>
+        <td>{{ value.deploymentStatus || 'NA' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

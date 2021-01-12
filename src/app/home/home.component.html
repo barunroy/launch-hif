@@ -1,0 +1,87 @@
+
+<nav class="navbar navbar-expand-lg navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand navbar-image" href="#"><img [src]=icon style="width: 50px;"></a>
+      <a class="navbar-brand" href="#"> HIF TOOL </a>
+    </div>
+   
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active current"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active current"><a href="#">Services</a></li>
+        <li routerLinkActive="active current"><a href="#">Contact</a></li>
+      </ul>
+
+      <form class="navbar-form navbar-right collapse navbar-collapse" style="border-radius: 15px;">
+        <div class="input-group">
+          <input type="text" class="form-control glowB" placeholder="Search" >
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+              <i class="glyphicon glyphicon-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      
+      <ul class="nav navbar-nav navbar-right collapse navbar-collapse">
+        <li *ngIf="!authService.isLoggedIn()" (click)="hideImage()" class="glowB" style="border-radius: 15px;">
+          <a routerLink="/login"><span class="glyphicon glyphicon-user"></span> Login </a>
+        </li>
+
+        <li *ngIf="authService.isLoggedIn()" class="glowB" style="border-radius: 10px;">
+          <a href="#"><span class="glyphicon glyphicon-user"></span> 
+            {{ authService.currentUser.name }} </a>
+        </li>
+      
+        <li *ngIf="authService.isLoggedIn()" (click)="hideImage()" class="glowB" style="border-radius: 10px;">
+          <a (click)="authService.logout()" href="#">
+            <span class="glyphicon glyphicon-log-out"></span> Logout </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid bg">
+  <br>
+  <h4 *ngIf="!authService.isLoggedIn()" class="ctstext"> 
+      <b>Please Login To Open The Functionalities</b>
+      <span class="glyphicon glyphicon-hand-up"></span> 
+  </h4>
+  <h4>
+  <p *ngIf="authService.isLoggedIn()"class="glowT"> 
+    Welcome {{ authService.currentUser.name }}
+  </p> </h4>
+  <br>
+  <div class="container-fluid col-md-12">
+    <a routerLink="/register"> <button class="btn btn-lg glowB" *ngIf="authService.isLoggedIn()">Register</button></a>
+    <a routerLink="/posts"><button class="btn btn-lg glowB" *ngIf="authService.isLoggedIn()">Development</button></a>
+    <a routerLink="/deploy"><button class="btn btn-lg glowB" *ngIf="authService.isLoggedIn()">Build & Deployment</button></a>
+    <a routerLink="/monitor"><button class="btn btn-lg glowB" *ngIf="authService.isLoggedIn()">Monitoring</button></a>
+    <br><br>
+  </div>
+</div>
+
+<hr />
+
+  <p class="ctstext2"><u> HIF ADMINISTRATION TOOL <span class="glyphicon glyphicon-cog"></span> </u></p>
+
+  <!--
+  <div class="container" *ngIf = "showImg">
+    <img [src]="bgImage" style="width:60%; margin-left: 220px; margin-right: auto; margin-top: 100px">
+ </div>
+-->
+ 
+<br><br><br>
+
+
+
+
+

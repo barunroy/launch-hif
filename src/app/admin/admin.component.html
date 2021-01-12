@@ -1,0 +1,169 @@
+
+<div class="container col-md-12">
+
+  <div *ngIf="loading" style="text-align: center;">
+     <p><strong> Creating New Application... </strong> </p>
+      <img src="assets/loading.gif" style="width: 300px;height: 110px;">
+  </div>
+  
+  <br>
+
+  <div class="alert alert-success alert-dismissible" role="alert" *ngIf ="Alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeAlert()">
+      <span aria-hidden="true">&times;</span></button>
+      The repository is created successfully.
+      <p>
+       <strong>{{Res}}</strong>
+      </p>
+  </div>
+
+  <form class="rounded">
+    <div class="row">
+      <div class="col-sm-12" style="background-color:rgb(221, 210, 190);">
+        <h4>Create New Application</h4>
+      </div>
+    </div>
+  </form>
+</div>
+
+<form class="form-inline" #postForm="ngForm" (ngSubmit)="onCreateBwPost(postForm.value)" >
+  <div class="rgform container col-md-12">
+
+    <div class="col-md-12">
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="Pkg" style="font-size: 2.3ch;">Project Name:</label>
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control input-lg"
+            id="Pkg"
+            required
+            ngModel
+            size="30"
+            name="Pkg"
+            placeholder="Project Name"
+          />
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="SourceType" style="font-size: 2.3ch;">SourceType:</label>
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control input-lg"
+            id="SourceType"
+            required
+            ngModel
+            size="30"
+            name="SourceType"
+            placeholder="SourceType"
+          />
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="DestinationType" style="font-size: 2.3ch;">DestinationType:</label>
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control input-lg"
+            id="DestinationType"
+            required
+            ngModel
+            size="30"
+            name="DestinationType"
+            placeholder="DestinationType"
+          />
+        </div>
+      </div>
+      
+      <br>
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="ValidationFlag" style="font-size: 2.3ch;">Add Validation?</label>
+        </div>
+        <div class="col-md-3">
+          
+          <label class="radio-inline">
+            <input type="radio" ngModel value="Y" name="ValidationFlag" > Y
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label class="radio-inline">
+            <input type="radio" ngModel value="N" name="ValidationFlag"> N
+          </label>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="TransformationFlag" style="font-size: 2.3ch;">Add Transformation?</label>
+        </div>
+        <div class="col-md-3">
+          
+          <label class="radio-inline">
+            <input type="radio" ngModel value="Y" name="TransformationFlag"> Y
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label class="radio-inline">
+            <input type="radio" ngModel value="N" name="TransformationFlag"> N
+          </label>
+
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="RoutingFlag" style="font-size: 2.3ch;">Add Routing?</label>
+        </div>
+        <div class="col-md-3">
+          
+          <label class="radio-inline">
+            <input type="radio" ngModel value="Y" name="RoutingFlag"> Y 
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label class="radio-inline">
+            <input type="radio" ngModel value="N" name="RoutingFlag"> N
+          </label>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+<!--commented as having error
+    <div class="col-md-12" style="padding: 10px; background-color: rgb(234, 226, 241);">
+        <button class="btn btn-info" type="submit" (click) = "clickAlert()"> SUBMIT
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+</form> 
+
+-->
+<br><br><br>
+
+    <!--
+    &nbsp;&nbsp;
+    <button
+          class="btn btn-primary"
+          type="submit"
+          (click) = "clickAlert()"
+          [disabled]="!postForm.valid"
+        >
+          Submit  
+          <span class="glyphicon glyphicon-chevron-right"></span>  
+        </button>
+      -->

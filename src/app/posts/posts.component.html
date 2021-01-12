@@ -1,0 +1,319 @@
+<!--
+<div class="container-fluid">
+  
+  <input
+      class="form-control"
+      type="text"
+      name="mode"
+      [(ngModel)]="mode"
+      (ngModelChange)="Search()"
+      placeholder="Enter mode"
+  />
+
+</div>
+-->
+
+<div class="container-fluid rounded-top">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-3 col-md-offset-0 ">
+      <button class="btn btn-primary ctsbutton bgcolor1" (click)="onFetch()">
+         Check All Inputs
+      </button>
+    </div>
+
+    <!--
+    <div class="col-xs-12 col-md-2 col-md-offset-0 ">
+      
+        <select class="form-control focusDlt" id="ProId" (change)="selectChangeHandler($event)">
+          <option value="" [selected]="isSelected"> Select ProjectId to Delete</option>
+          <option *ngFor="let value of values" [value]= "value.interfaceName" > {{value.interfaceName}} </option>
+        </select>
+        <br>
+        <button class="btn btn-danger" (click)="onClearPosts()">
+          Clear
+        </button>
+     
+        <br> <br>
+    </div>
+    -->
+  </div>
+
+  <br>
+
+    <div class="container-fluid" *ngIf= "showMe">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered" style="font: outline;">
+          <thead>
+            <tr class="success">
+            <th>Project ID</th> 
+            <th>Interface Name</th>
+            <th>Deployment Mode</th>
+            <th>Build Number</th>
+            <th>Instance Name</th>
+            <th>Cost Center</th>
+            <th>Memory Request</th>
+            <th>CPU Request</th>
+            <th>Memory Limit</th>
+            <th>CPU Limit</th>
+            <th>Health CheckUri</th>
+            <th>TechOwner</th>
+            <th>Deployment Status</th>
+            <th>Actions</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            <tr *ngFor="let value of values">
+            <td>{{ value.projectId || 'NA' }}</td>
+            <td>{{ value.interfaceName || 'NA' }}</td>
+            <td>{{ value.deploymentMode || 'NA' }}</td>
+            <td>{{ value.buildNumber || 'NA' }}</td>
+            <td>{{ value.instanceName || 'NA' }}</td>
+            <td>{{ value.costCenter || 'NA' }}</td>
+            <td>{{ value.memoryRequest || 'NA' }}</td>
+            <td>{{ value.cpuRequest || 'NA' }}</td>
+            <td>{{ value.memoryLimit || 'NA' }}</td>
+            <td>{{ value.cpuLimit || 'NA' }}</td>
+            <td>{{ value.healthCheckUri || 'NA' }}</td>
+            <td>{{ value.techOwner || 'NA' }}</td>
+            <td>{{ value.deploymentStatus || 'NA' }}</td>
+            <td><i class="glyphicon glyphicon-edit" style="font-size: 14px; color: blue; cursor: pointer;"></i>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <i (click)="onClearPosts(value.interfaceName)" class="glyphicon glyphicon-trash" style="font-size: 14px; color: red; cursor: pointer;"></i>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--
+      <ul class="list-group">
+        <div class="col-sm-3 ctstable">
+          <label class="list-group-item" id="Modify" style="background: aquamarine;">Modify</label>
+          <a class="btn btn-danger"> Modify </a>
+        </div>
+
+        <div class="col-sm-3 ctstable">
+          <label class="list-group-item" id="id" style="background: aquamarine;">ID</label>
+          <li *ngFor="let value of values" class="list-group-item"> {{ value.id || 'NA' }}
+          </li>
+        </div>
+        <div class="col-sm-3 ctstable">
+          <label id="projectId" class="list-group-item" style="background: aquamarine;">Project ID</label>  
+          <li *ngFor="let value of values" class="list-group-item"> {{ value.projectId || 'NA' }}
+          </li>
+        </div>
+        <div class="col-sm-3 ctstable">
+          <label id="deploymentMode" class="list-group-item" style="background: aquamarine;">Interface Name</label>
+          <li *ngFor="let value of values" class="list-group-item"> {{ value.interfaceName || 'NA' }}
+          </li>
+        </div>
+        <div class="col-sm-3 ctstable">
+          <label id="deploymentMode" class="list-group-item" style="background: aquamarine;">Deployment Mode</label>
+          <li *ngFor="let value of values" class="list-group-item"> {{ value.deploymentMode || 'NA' }}
+          </li>
+        </div>
+      </ul>
+    -->
+    </div>
+</div>
+<hr />
+ <br> <br> <br>
+
+<div class="container-fluid ">
+  <div class="col-xs-12 col-md-4 col-md-offset-0 bgcolor2">
+    
+    <label for="ProId">InterfaceName</label>
+    <select class="form-control" id="ProId" (change)="selectChangeHandler($event)">
+      
+     <!-- Commneted as giving error
+      <option value="" [selected]="isSelected"> Select interfaceName</option>
+     -->
+      <option value=""> Select interfaceName</option>
+      <option *ngFor="let value of values" [value]= "value.interfaceName" > {{value.interfaceName}} </option>
+    
+    </select>
+    <br>
+    <button class="btn btn-primary" (click)="onGetProdId()">
+      <span class="glyphicon glyphicon-hand-right"></span>  Click Here
+    </button>
+    
+    <br> <br>
+  </div>
+
+  <div class="col-sm-12 bgcolor2" *ngIf= "hide">
+    <p><h5> Showing the details of Interface Name: {{selectedID}} </h5>
+    <ul class="list-group">
+      <div class="col-sm-2">
+        <label id="id" style="text-align:center;">ID</label>
+        <li class="list-group-item"> {{ prodValue?.id || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="projectId" style="text-align:center;">Project ID</label>  
+        <li class="list-group-item"> {{ prodValue?.projectId || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="interfaceName" style="text-align:center;">Interface Name</label>
+        <li class="list-group-item"> {{ prodValue?.interfaceName || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="deploymentMode" style="text-align:center;">Deployment Mode</label>
+        <li class="list-group-item"> {{ prodValue?.deploymentMode || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="buildNumber" style="text-align:center;">Build Number</label>
+        <li class="list-group-item"> {{ prodValue?.buildNumber || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="instanceName" style="text-align:center;">InstanceName</label>
+        <li class="list-group-item"> {{ prodValue?.instanceName || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="costCenter" style="text-align:center;">Cost Center</label>
+        <li class="list-group-item"> {{ prodValue?.costCenter || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="memoryRequest" style="text-align:center;">Memory Request</label>
+        <li class="list-group-item"> {{ prodValue?.memoryRequest || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="cpuRequest" style="text-align:center;">CPU Request</label>
+        <li class="list-group-item"> {{ prodValue?.cpuRequest || 'NA' }}
+        </li>
+      </div>
+      <div class="col-sm-2">
+        <label id="deploymentStatus" style="text-align:center;">Deployment Status</label>
+        <li class="list-group-item"> {{ prodValue?.deploymentStatus || 'NA' }}
+        </li>
+      </div>
+    </ul>
+  </div>
+</div>
+
+<hr />
+<!--
+  <input class = "form=control" type="text" name="ProdId" [(ngModel)]="ProdId" placeholder="Give ProdId">
+      <button (click)="onGetProdId()">Click me!</button>
+
+      <div class="col-sm-3">
+  <label id="deploymentMode" style="text-align:center;">Interface Name</label>
+  <li *ngFor="let prodId of prodValue" class="list-group-item"> {{ prodId.interfaceName  }}
+  </li>
+</div>
+-->
+  <br> <br>
+
+<div class="container-fluid ">
+
+  <!-- commenting as giving error <div class="alert alert-success alert-dismissible" role="alert" *ngIf ="Alert"> -->
+  <div class="alert alert-success alert-dismissible" role="alert" *ngIf ="true">  
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span></button>
+    <strong>Success !</strong> Your values are added successfully.
+  </div>
+
+  <div class="col-xs-12 col-md-8 col-md-offset-0 bgcolor3">
+      <p><h3><b>Add New Values Here!</b></h3>
+      <br>
+      <form #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)">
+        <div class="form-group col-sm-6">
+          <label for="projectId">Project ID:</label>
+        </div>
+        <div class="form-group col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            id="projectId"
+            required
+            ngModel
+            name="projectId"
+          />
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="interfaceName">Interface Name:</label>
+       </div>
+       <div class="form-group col-sm-6">
+          <input
+          class="form-control"
+          id="interfaceName"
+          required
+          ngModel
+          name="interfaceName"
+          />
+       </div>
+        <div class="form-group col-sm-6">
+          <label for="deploymentMode">Deployment Mode:</label>
+        </div>
+        <div class="form-group col-sm-6">
+          <input
+            class="form-control"
+            id="deploymentMode"
+            required
+            ngModel
+            name="deploymentMode"
+          />
+        </div>
+        <div class="form-group col-sm-12">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+        <span class="glyphicon glyphicon-send"></span> 
+          
+          Send Post
+        </button>
+      </div>
+      </form>
+    </div>
+</div>
+
+<br>
+  <!--
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-0">
+      <button class="btn btn-primary" (click)="onFetchPosts()">
+        Fetch Posts
+      </button>
+      |
+      <button class="btn btn-danger" (click)="onClearPosts()">
+        Clear Posts
+      </button>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<form *ngIf= "showMe">
+  <ul class="list-group">
+    <div class="col-sm-4">
+      <label id="id" style="text-align:center;">ID</label>
+      <li *ngFor="let value of values" class="list-group-item"> {{ value.id  }}
+      </li>
+    </div>
+    <div class="col-sm-4">
+      <label id="projectId" style="text-align:center;">Project ID</label>  
+      <li *ngFor="let value of values" class="list-group-item"> {{ value.projectId  }}
+      </li>
+    </div>
+    <div class="col-sm-4">
+      <label id="deploymentMode" style="text-align:center;">Deployment Mode</label>
+      <li *ngFor="let value of values" class="list-group-item"> {{ value.deploymentMode  }}
+      </li>
+    </div>
+  </ul>
+</form>
+
+-->

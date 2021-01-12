@@ -1,0 +1,14 @@
+
+.form-signin {
+  max-width: 400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  padding: 10px;
+  font-size: 15px;
+}
+
