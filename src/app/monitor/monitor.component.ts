@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams  } from '@angular/common/http';
 
 @Component({
   selector: 'monitor',
@@ -14,7 +14,9 @@ export class MonitorComponent implements OnInit {
 
   //private URLG = 'http://54.85.113.141:8181/integration-framework-0.0.1-SNAPSHOT/api/v1/deploymentDetails';
 
-  private URLG = 'https://trial1106.api.mashery.com/deploymentDetails?api_key=ruwbs6dmfthe87ty9r6etnuv';
+  private URLG = 'https://trial1106.api.mashery.com/deploymentDetails';
+  
+
 
   constructor(private http: HttpClient ) {
   }
@@ -24,8 +26,10 @@ export class MonitorComponent implements OnInit {
   }
   
   private onFetchAll() {
+    //parameters
+    const options = { params: new HttpParams().set("api_key", "ruwbs6dmfthe87ty9r6etnuv") };
     // Send Http request
-    this.http.get(this.URLG)
+    this.http.get(this.URLG, options)
       .subscribe(response => {
         this.values = response;
         
